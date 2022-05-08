@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include <time.h>
 
+// termina characters and background color
+#define BG_BLACK "\033[40m"
+#define BG_WHITE "\033[47m"
+#define BG_GREEN "\033[42m"
+#define RESET "\033[0m"
+
 #define ROWS 33 // 2 * n - 1 n = 6
-#define COLS 33 // 2 * n - 1 n = 5
+#define COLS 103 // 2 * n - 1 n = 5
 
 
 typedef struct {
@@ -55,7 +61,7 @@ int main() {
     // print_maze_as_is(maze[0]);
     // getchar();
     }
-    print_maze_as_is(maze[0]);
+    // print_maze_as_is(maze[0]);
     print_maze(maze[0]); // TODO make better maze rendering function;
     return 0;
 }
@@ -72,23 +78,23 @@ void print_maze_as_is(block* start) {
 }
 
 void print_maze(block* start) {
-    for(int t=0; t<=COLS; t++) printf("___");
-    printf("\n");
+    // for(int t=0; t<=COLS; t++) printf("%s___%s", BG_WHITE, RESET);
+    // printf("\n");
     for(int j=0; j<ROWS; j++) {
-        printf(" | ");
+        // printf("%s %s|%s %s", BG_GREEN, BG_WHITE, BG_GREEN, RESET);
         for(int i=0; i<COLS; i++) {
             if(start->value == 1) {
-                printf("   ");
+                printf("%s %s", BG_GREEN, RESET);
             } else {
-                printf(" | ");
+                printf("%s|%s", BG_WHITE, RESET);
             }
             ++start;
         }
-        printf(" | ");
+        // printf("%s %s|%s %s", BG_GREEN, BG_WHITE, BG_GREEN, RESET);
         printf("\n");
         
     }
-    for(int t=0; t<=COLS; t++) printf("---");
+    // for(int t=0; t<=COLS; t++) printf("%s---%s", BG_WHITE, RESET);
 }
 
 
